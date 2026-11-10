@@ -1,0 +1,16 @@
+# n8n community edition, running locally. Start: docker compose up -d   Stop: docker compose down
+# Open http://localhost:5678 and create the owner account on first visit.
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=Asia/Shanghai
+      - TZ=Asia/Shanghai
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:

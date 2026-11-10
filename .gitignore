@@ -1,0 +1,25 @@
+# Secrets
+.env
+*.key
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local app data
+.n8n/
+.streamlit/secrets.toml
+chroma_db/
+vector_store/
+
+# Never commit real customer or employer files
+private/
+*.private.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
