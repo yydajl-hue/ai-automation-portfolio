@@ -1,0 +1,21 @@
+﻿received_at,name,email,message,category,priority,summary,reply_needed
+2026-11-10T21:59:38.623Z,Tom Baker,tom@example.com,"Hi, how much would it cost to automate our weekly sales report from Shopify into Google Sheets?",sales_inquiry,medium,Tom Baker asks about the cost of automating a weekly Shopify sales report into Google Sheets.,1
+2026-11-10T22:00:11.354Z,李娜,lina@example.com,你好，我们想做一个自动整理客户表单的流程，大概多少钱？多久能做好？,sales_inquiry,high,客户咨询自动整理客户表单流程的价格和交付周期。,1
+2026-11-10T22:00:52.449Z,Maria Lopez,maria@example.com,Do you offer monthly packages? We have about 300 support emails a week and want them sorted automatically.,sales_inquiry,high,Maria Lopez asks whether monthly packages are offered for automatically sorting about 300 support emails per week.,1
+2026-11-10T22:03:13.151Z,王强,wangq@example.com,请问你们能帮我们搭建一个基于公司制度文件的问答机器人吗？想先了解一下报价。,sales_inquiry,medium,客户咨询能否基于公司制度文件搭建问答机器人，并希望了解报价。,1
+2026-11-10T22:03:16.802Z,James Wu,james@example.com,The workflow you set up last month stopped sending notifications since yesterday. Can you take a look?,support,high,The workflow set up last month has stopped sending notifications since yesterday and needs investigation.,1
+2026-11-10T22:03:53.349Z,陈静,chenjing@example.com,上周交付的表格清洗工具，上传超过 5 万行的文件就报错，麻烦帮忙看一下。,support,high,客户反馈上周交付的表格清洗工具在上传超过5万行文件时报错，请求排查。,1
+2026-11-10T22:05:05.298Z,Anna Schmidt,anna@example.com,How do I add a new person to the notification list? I couldn't find it in the instructions.,support,medium,"Anna Schmidt asks how to add a new person to the notification list, as she couldn't find it in the instructions.",1
+2026-11-10T22:05:31.466Z,刘洋,liuyang@example.com,问答机器人回答的时候没有显示页码了，是不是哪里设置改了？,support,medium,用户反馈问答机器人回答时不再显示页码，询问是否是设置被更改。,1
+2026-11-10T22:06:02.137Z,Peter Hall,peter@example.com,This is the third time the report arrived empty. We are paying for this and it is not acceptable.,complaint,high,Customer reports the report has arrived empty for the third time and expresses dissatisfaction with the paid service.,1
+2026-11-10T22:06:29.379Z,赵敏,zhaomin@example.com,说好三天交付，现在已经一周了还没消息，非常不满意。,complaint,high,客户赵敏投诉承诺三天交付但已过一周仍无消息，表示非常不满意。,1
+2026-11-10T22:07:17.174Z,Laura Chen,laura@example.com,Your invoice charged us twice this month. Please fix this immediately.,complaint,high,Customer reports being charged twice on this month's invoice and demands an immediate fix.,1
+2026-11-10T22:07:44.095Z,孙磊,sunlei@example.com,客服一直不回复，问题拖了很久都没解决，希望尽快给个说法。,complaint,high,客户投诉客服长期不回复，问题拖延未解决，要求尽快给出说法。,1
+2026-11-10T22:08:10.547Z,David Kim,david@example.com,I run a small marketing agency. Would you be open to a referral partnership for automation projects?,partnership,medium,David Kim of a small marketing agency asks whether we are open to a referral partnership for automation projects.,1
+2026-11-10T22:08:34.702Z,周婷,zhouting@example.com,我们是做企业培训的，想和你们合作推出一门 AI 自动化课程，方便聊聊吗？,partnership,medium,周婷希望就合作推出AI自动化课程进行洽谈。,1
+2026-11-10T22:09:02.109Z,Sofia Rossi,sofia@example.com,We build e-commerce sites and often need automation work. Could we subcontract projects to you?,partnership,medium,Sofia Rossi proposes subcontracting automation projects to us for her e-commerce site builds.,1
+2026-11-10T22:09:40.188Z,吴刚,wugang@example.com,我们公司有一批制造业客户需要知识库系统，想找长期技术合作伙伴。,partnership,high,吴刚代表公司寻求长期技术合作，为制造业客户提供知识库系统。,1
+2026-11-10T22:10:12.527Z,Lucky Winner,promo@example.com,Congratulations! You have been selected to receive a free iPhone. Click the link to claim now!!!,spam,low,"The message claims the recipient won a free iPhone and urges clicking a link to claim it, which is a classic spam/phishing pattern.",0
+2026-11-10T22:10:39.626Z,推广专员,ad@example.com,低价出售各类平台账号、粉丝、好评，量大从优，加微信详谈。,spam,low,该消息是推销平台账号、粉丝和好评的垃圾广告。,0
+2026-11-10T22:11:08.068Z,SEO Expert,seo@example.com,"I can get your website to page 1 of Google in 7 days, guaranteed. Reply for a special price.",spam,low,Unsolicited SEO service offer promising guaranteed page 1 Google rankings.,0
+2026-11-10T22:11:33.952Z,网贷顾问,loan@example.com,无需抵押，秒批贷款，最高 50 万，点击链接立即申请。,spam,low,该消息是无抵押快速贷款的推广广告，疑似垃圾信息。,0

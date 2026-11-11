@@ -1,0 +1,329 @@
+{
+  "name": "Email triage",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Contact us",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name"
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Message",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f5898e54-ed09-4619-b9b9-ecb103dfd1f9",
+      "name": "On form submission",
+      "webhookId": "8f370756-0f61-4ef8-8743-f0868fa2a2ae"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.deepseek.com/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: \"deepseek-chat\",\n  temperature: 0,\n  response_format: { type: \"json_object\" },\n  messages: [\n    { role: \"system\", content: \"You triage business enquiries. Reply in json only, with keys: category (one of sales_inquiry, support, complaint, partnership, spam), priority (high, medium or low), summary (one sentence in the same language as the message), reply_needed (true or false).\" },\n    { role: \"user\", content: \"Name: \" + $json.Name + \"\\nEmail: \" + $json.Email + \"\\nMessage: \" + $json.Message }\n  ]\n}) }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "69b3be32-3333-47f9-a82a-89589448a4de",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "URbz9wN41jix5jXm",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ALLOWED = ['sales_inquiry', 'support', 'complaint', 'partnership', 'spam'];\nconst form = $('On form submission').first().json;\nreturn $input.all().map(item => {\n  let r = {};\n  let note = '';\n  try {\n    r = JSON.parse(item.json.choices[0].message.content);\n  } catch (e) {\n    note = 'Model reply could not be read - check manually';\n  }\n  return { json: {\n    received_at: new Date().toISOString(),\n    name: form.Name,\n    email: form.Email,\n    message: form.Message,\n    category: ALLOWED.includes(r.category) ? r.category : 'needs_review',\n    priority: ['high', 'medium', 'low'].includes(r.priority) ? r.priority : 'medium',\n    summary: r.summary || note,\n    reply_needed: r.reply_needed === true || r.reply_needed === 'true'\n  }};\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "eb886435-acf2-48f6-8c16-d7573fe09bff",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "Fof7GYfAniTMzYOx",
+          "mode": "list",
+          "cachedResultName": "enquiries",
+          "cachedResultUrl": "/projects/FacnbLtKgrjaqN16/datatables/Fof7GYfAniTMzYOx"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.name }}",
+            "received_at": "={{ $json.received_at }}",
+            "email": "={{ $json.email }}",
+            "message": "={{ $json.message }}",
+            "category": "={{ $json.category }}",
+            "priority": "={{ $json.priority }}",
+            "summary": "={{ $json.summary }}",
+            "reply_needed": "={{ $json.reply_needed }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "received_at",
+              "displayName": "received_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "priority",
+              "displayName": "priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "summary",
+              "displayName": "summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "reply_needed",
+              "displayName": "reply_needed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        672,
+        0
+      ],
+      "id": "fa9b53e9-a6ec-434e-99eb-28c9b2055982",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "c01c1161-b05c-40e4-bdb3-7c882ad3da5d",
+              "leftValue": "={{ $('Code in JavaScript').item.json.category }}",
+              "rightValue": "spam",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        896,
+        0
+      ],
+      "id": "d5c859f6-3587-40f5-ace9-f5213b522ed2",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "fromEmail": "861058075@qq.com",
+        "toEmail": "861058075@qq.com",
+        "subject": "=[{{ $('Code in JavaScript').item.json.priority }}] {{ $('Code in JavaScript').item.json.category }} from {{ $('Code in JavaScript').item.json.name }}",
+        "emailFormat": "text",
+        "text": "=Summary: {{ $('Code in JavaScript').item.json.summary }}\nFrom: {{ $('Code in JavaScript').item.json.name }} <{{ $('Code in JavaScript').item.json.email }}>\nMessage: {{ $('Code in JavaScript').item.json.message }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1120,
+        -96
+      ],
+      "id": "1d21ba74-bf5a-4609-b692-d141aa6ad5fe",
+      "name": "Send an Email",
+      "webhookId": "9a05d0d2-ba10-46a1-b918-6c59a1b1432f",
+      "credentials": {
+        "smtp": {
+          "id": "9lkRlLG7jLt9XP3L",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "8igcDdcVGHigpAxQ",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "ff2b4373-b902-467c-9457-9501de321595",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "48c2fcabcd17b387a787c1c19f4b3f2f0fc5bce13098fa11db053b3eb9b63aa5"
+  },
+  "nodeGroups": [],
+  "id": "XaHcTsDiHutwx6Ab",
+  "tags": []
+}

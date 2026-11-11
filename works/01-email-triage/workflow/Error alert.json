@@ -1,0 +1,68 @@
+{
+  "name": "Error alert",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a1261e76-b68f-4d9c-8ad5-8cdf7905eb59",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "fromEmail": "861058075@qq.com",
+        "toEmail": "861058075@qq.com",
+        "subject": "=n8n error in {{ $json.workflow.name }}",
+        "emailFormat": "text",
+        "text": "=Failed node: {{ $json.execution.lastNodeExecuted }}\nError: {{ $json.execution.error.message }}\nOpen: {{ $json.execution.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "1dd84e7a-fdec-4332-a95e-59d7c7d9e4bd",
+      "name": "Send an Email",
+      "webhookId": "710f6ba3-7b35-4c9e-8044-c7a02e519eff",
+      "credentials": {
+        "smtp": {
+          "id": "9lkRlLG7jLt9XP3L",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "0e93e7ec-fef9-48f5-9c0b-f6c5b52f1849",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "48c2fcabcd17b387a787c1c19f4b3f2f0fc5bce13098fa11db053b3eb9b63aa5"
+  },
+  "nodeGroups": [],
+  "id": "8igcDdcVGHigpAxQ",
+  "tags": []
+}

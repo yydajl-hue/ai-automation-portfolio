@@ -19,12 +19,14 @@ n8n (community edition, self-hosted) · LLM API (DeepSeek or Qwen) · online spr
 3. Add your own credentials in n8n (mail, spreadsheet, LLM). Credentials are never exported with the workflow.
 
 ## Test results · 测试结果
-_Fill in after testing._
 
-- Test set: 20 synthetic emails in `sample-data/` · 20 封自造测试邮件
-- Runs without error: __ / 20 · 无报错次数
-- Classified correctly: __ / 20 · 分类正确数
-- Failure handling demonstrated: retry + alert (screenshot in `docs/`) · 失败重试与提醒截图
+- Test set: 20 synthetic enquiries in `sample-data/test-enquiries.csv` (10 Chinese, 10 English; 4 per category) · 20 条自造测试咨询（中英各 10 条）
+- Runs without error: 20 / 20 · 无报错次数
+- Classified correctly: 20 / 20 (100%) · 分类正确数
+- Spam correctly marked as no reply needed: 4 / 4 · 垃圾信息正确标记为无需回复
+- Model: DeepSeek, temperature 0, JSON output · 模型：DeepSeek，温度 0，JSON 输出
+- Failure handling: 3 retries on the LLM call + error-alert email workflow (screenshot in `docs/`) · 失败重试与报错提醒
+- Full results: `docs/test-results.csv`
 
 ## Demo · 演示
 _2–3 minute screen recording (no face): link TBD · 2–3 分钟录屏（不露脸）_
