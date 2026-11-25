@@ -1,0 +1,6 @@
+﻿order_id,product,customer,amount
+001, Keyboard ,Alice,99
+002,鼠标,Bob,49
+003,Monitor,,299
+002,鼠标,Bob,49
+,,,

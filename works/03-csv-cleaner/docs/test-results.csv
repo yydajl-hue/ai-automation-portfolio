@@ -1,0 +1,12 @@
+﻿test,passed
+three files merged,True
+blank rows removed,True
+duplicate IDs removed,True
+output rows,True
+leading zero preserved,True
+text trimmed,True
+missing cell preserved,True
+source unchanged,True
+missing keys not deduplicated,True
+optional fill,True
+full row dedup,True
